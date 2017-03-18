@@ -1,6 +1,6 @@
 <template>
   <div>
-  		<v-header></v-header>
+  		<v-header :seller="seller"></v-header>
 		<div class="tab border-1px">
 			<div class="tab-items">
 				<router-link to="/goods"><div>商品</div></router-link>
@@ -29,7 +29,7 @@ export default {
     }
   },
   created() {
-    this.$http.get('/api/goods').then((response) => {
+    this.$http.get('/api/seller').then((response) => {
       response = response.body
     if (response.errno === 0) {
       this.seller = response.data
