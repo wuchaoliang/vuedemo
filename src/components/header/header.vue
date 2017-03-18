@@ -54,6 +54,7 @@
           margin: 2px 0 8px 0
           .brand
             display: inline-block
+            vertical-align: top
             width: 30px
             height: 18px
             bg-url('brand')
@@ -62,5 +63,7 @@
             .name
               margin-left: 6px
               font-size: 16px
+              line-height: 18px
+              font-weight: bold
 
 </style>
