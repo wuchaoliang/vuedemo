@@ -7,6 +7,7 @@ import VueResource from 'vue-resource'
 import goods from 'components/goods/goods'
 import ratings from 'components/ratings/ratings'
 import sellers from 'components/sellers/sellers'
+import 'common/stylus/index.styl'
 Vue.use(VueRouter)
 Vue.use(VueResource)
 const routes = [
