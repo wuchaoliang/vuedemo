@@ -1,6 +1,6 @@
 <template>
-	<div class="header">
-		我是头部header
+	<div class="sellers">
+		我是商家sellers
 	</div>
 </template>
 

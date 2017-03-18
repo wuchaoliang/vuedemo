@@ -1,6 +1,6 @@
 <template>
-	<div class="header">
-		我是头部header
+	<div class="ratings">
+		我是评论ratings
 	</div>
 </template>
 
