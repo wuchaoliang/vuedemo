@@ -22,7 +22,7 @@
       starType: function() {
         return 'star-' + this.size;
       },
-      itemClass: function() {
+      itemClasses: function() {
         let result = [];
         let score = Math.floor(this.score * 2) / 2;
         let hasDecimal = score % 1 !== 0;
