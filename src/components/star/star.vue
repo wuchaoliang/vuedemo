@@ -16,27 +16,27 @@
       },
       score: {
         type: Number
+      }
+    },
+    computed: {
+      starType: function() {
+        return 'star-' + this.size;
       },
-      computed: {
-        starType: function() {
-          return 'star-' + this.size;
-        },
-        itemClass: function() {
-          let result = [];
-          let score = Math.floor(this.score * 2) / 2;
-          let hasDecimal = score % 1 !== 0;
-          let integer = Math.floor(score);
-          for (let i = 0; i < integer; i++) {
-            result.push(CLS_ON);
-          }
-          if (hasDecimal) {
-            result.push(CLS_HALF);
-          }
-          while (result.length < LENGTH) {
-            result.push(CLS_OFF);
-          }
-          return result
+      itemClass: function() {
+        let result = [];
+        let score = Math.floor(this.score * 2) / 2;
+        let hasDecimal = score % 1 !== 0;
+        let integer = Math.floor(score);
+        for (let i = 0; i < integer; i++) {
+          result.push(CLS_ON);
         }
+        if (hasDecimal) {
+          result.push(CLS_HALF);
+        }
+        while (result.length < LENGTH) {
+          result.push(CLS_OFF);
+        }
+        return result
       }
     }
   };
