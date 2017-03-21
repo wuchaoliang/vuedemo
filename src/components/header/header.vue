@@ -32,8 +32,21 @@
     <div v-show="detailShow" class="detail">
       <div class="detail-wrapper clearfix">
         <div class="detail-main">
-          <div class="name">{{seller.name}}</div>
-          <star :size="48" :score="seller.score"></star>
+          <h1 class="name">{{seller.name}}</h1>
+          <div class="star-wrapper">
+            <star :size="48" :score="seller.score"></star>
+          </div>
+          <div class="title">
+            <div class="line"></div>
+            <div class="text">用户信息</div>
+            <div class="line"></div>
+          </div>
+          <ul class="supports">
+            <li v-for="item in seller.supports" class="support-item">
+              <span class="icon" :class="classMap[seller.supports[$index].type]"></span>
+              <span class="text" :class="classMap[seller.supports[$index].description]"></span>
+            </li>
+          </ul>
         </div>
       </div>
       <div class="detail-close">
@@ -206,6 +219,23 @@
             font-size: 16px
             text-align: center
             color: rgb(255, 255, 255)
+          .star-wrapper
+            margin-top: 18px
+            padding: 2px 0
+            text-align: center
+          .title
+            display: flex
+            width: 80%
+            margin: 28px auto 24px auto
+            .line
+              flex: 1
+              position: relative
+              top: -6px
+              border-bottom: 1px solid rgba(255,255,255,0.2)
+            .text
+              padding: 0 12px
+              font-weight: 700
+              font-size: 14px
       .detail-close
         position: relative
         width: 32px
