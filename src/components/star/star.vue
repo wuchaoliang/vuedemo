@@ -18,10 +18,10 @@
         type: Number
       },
       computed: {
-        starType() {
+        starType: function() {
           return 'star-' + this.size;
         },
-        itemClass() {
+        itemClass: function() {
           let result = [];
           let score = Math.floor(this.score * 2) / 2;
           let hasDecimal = score % 1 !== 0;
