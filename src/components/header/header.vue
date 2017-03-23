@@ -148,18 +148,18 @@
             background-size: 12px 12px
             background-repeat: no-repeat
             &.decrease
-              bg-url('decrease_1')
+              bg-url('./decrease_1')
             &.discount
-              bg-url('discount_1')
+              bg-url('./discount_1')
             &.guarantee
-              bg-url('guarantee_1')
+              bg-url('./guarantee_1')
             &.invoice
-              bg-url('invoice_1')
+              bg-url('./invoice_1')
             &.special
-              bg-url('special_1')
-        .text
-          line-height: 12px
-          font-size: 10px
+              bg-url('./special_1')
+            .text
+              line-height: 12px
+              font-size: 12px
       .support-count
         position: absolute
         right: 12px
@@ -194,10 +194,10 @@
         bg-url('bulletin')
         background-size: 22px 12px
         background-repeat: no-repeat
-      .bulletin-text
-        margin: 0 4px
-        font-size: 10px
-        line-height: 28px
+        .bulletin-text
+          margin: 0 4px
+          font-size: 12px
+          line-height: 28px
       .icon-keyboard_arrow_right
         position: absolute
         font-size: 10px
