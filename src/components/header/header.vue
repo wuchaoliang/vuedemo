@@ -29,7 +29,6 @@
     <div class="background">
       <img :src="seller.avatar" width="100%" height="100%">
     </div>
-<<<<<<< HEAD
     <transition name="fade">
       <div v-show="detailShow" class="detail">
         <div class="detail-wrapper clearfix">
@@ -64,40 +63,6 @@
         </div>
       </div>
     </transition>
-=======
-    <div v-show="detailShow" class="detail" transition="fade">
-      <div class="detail-wrapper clearfix">
-        <div class="detail-main">
-          <h1 class="name">{{seller.name}}</h1>
-          <div class="star-wrapper">
-            <star :size="48" :score="seller.score"></star>
-          </div>
-          <div class="title">
-            <div class="line"></div>
-            <div class="text">用户信息</div>
-            <div class="line"></div>
-          </div>
-          <!--<ul class="supports">-->
-            <!--<li v-for="item in seller.supports" class="support-item">-->
-              <!--<span class="icon" :class="classMap[seller.supports[$index].type]"></span>-->
-              <!--<span class="text" :class="classMap[seller.supports[$index].description]"></span>-->
-            <!--</li>-->
-          <!--</ul>-->
-          <div class="title">
-            <div class="line"></div>
-            <div class="text">商家公告</div>
-            <div class="line"></div>
-          </div>
-          <div class="bulletin">
-            <p class="cintent">{{seller.bulletin}}</p>
-          </div>
-        </div>
-      </div>
-      <div class="detail-close" @click="hideDetail">
-        <i class="icon-close"></i>
-      </div>
-    </div>
->>>>>>> origin/master
   </div>
 </template>
 
@@ -254,21 +219,12 @@
       width: 100%
       height: 100%
       overflow: auto
-<<<<<<< HEAD
       background-filter: blur(10px)
       opacity: 1
       background: rgba(7, 17, 27, 0.8)
       &.fade-enter-active, &.fade-leave-active
         transition: all 0.5s
       &.fade-enter, &.fade-leave-active
-=======
-      transition: all 2
-      background-filter: blur(10px)
-      &.fade-transition
-        opacity: 1
-        background: rgba(7, 17, 27, 0.8)
-      &.fade-enter, &fade-leave
->>>>>>> origin/master
         opacity: 0
         background: rgba(7, 17, 27, 0)
       .detail-wrapper
