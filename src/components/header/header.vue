@@ -139,6 +139,7 @@
           line-height: 12px
           color: rgb(255,255,255)
         .support
+          font-size: 0px
           .icon
             display: inline-block
             vertical-align: top
@@ -180,6 +181,7 @@
       position: relative
       height: 28px
       line-height: 28px
+      font-size: 10px
       padding: 0 22px 0 22px
       white-space: nowrap
       overflow: hidden
