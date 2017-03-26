@@ -22,8 +22,8 @@
               <div class="content">
                 <h2 class="name">{{food.name}}</h2>
                 <p class="desc">{{food.description}}</p>
-                <div class="extra count">
-                  <sapn>月售{{food.sellCount}}份</sapn>
+                <div class="extra">
+                  <sapn class="count">月售{{food.sellCount}}份</sapn>
                   <sapn>好评率{{food.rating}}%</sapn>
                 </div>
                 <div class="price">
@@ -147,10 +147,11 @@
             font-size: 14px
             color: rgb(7, 17,27)
           .desc, .extra
-            max-resolution: 8px
             line-height: 10px
             font-size: 10px
             color: rgb(147, 153, 159)
+          .desc
+            margin-bottom: 8px
           .extra
             &.count
               margin-right: 12px
