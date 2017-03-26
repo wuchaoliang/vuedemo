@@ -28,7 +28,7 @@
                 </div>
                 <div class="price">
                   <span class="now">￥{{food.price}}</span>
-                  <span  class="old" v-show="food.oldPrice">￥{{food.oldPrice}}</span>
+                  <span class="old" v-show="food.oldPrice">￥{{food.oldPrice}}</span>
                 </div>
               </div>
             </li>
@@ -50,7 +50,8 @@
     },
     data() {
       return {
-        goods: []
+        goods: [],
+        listHeight: []
       }
     },
     created() {
@@ -62,6 +63,7 @@
           console.log(this.goods);
           this.$nextTick(function() {
             this._initScroll();
+            this._calHeight();
           })
         }
       })
@@ -70,6 +72,9 @@
       _initScroll() {
         this.meunScroll = new BScroll(this.$refs.menuWrapper, {});
         this.foodsScroll = new BScroll(this.$refs.foodsWrapper, {});
+      },
+      _calHeight() {
+
       }
     }
   }
@@ -133,7 +138,8 @@
         border-1px(rgba(7, 17, 27, 0.1))
         padding-bottom: 18px
         &:last-child
-          display: none
+        &:after
+        display: none
           padding-bottom: 0
         .icon
           flex: 0 0 57px
@@ -151,6 +157,7 @@
             font-size: 10px
             color: rgb(147, 153, 159)
           .desc
+            line-height: 12px
             margin-bottom: 8px
           .extra
             &.count
