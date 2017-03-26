@@ -87,7 +87,7 @@
         this.detailShow = false
       }
     },
-    created() {
+    created: function() {
       this.classMap = ['decrease', 'discount', 'special', 'invoice', 'guarantee']
     },
     components: {
