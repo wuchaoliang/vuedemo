@@ -3,7 +3,7 @@
     <div class="goods">
       <div ref="menuWrapper" class="menu-wrapper">
         <ul>
-          <li v-for="(item,index) in goods" class="menu-item" :class="{'current':currentIndex===index}" @click="selectMenu(index,$enent)">
+          <li v-for="(item,index) in goods" class="menu-item" :class="{'current':currentIndex===index}" @click="selectMenu(index,$event)">
           <span class="text border-1px">
             <span v-show="item.type>0" class="icon" :class="classMap[item.type]"></span>
             {{item.name}}
@@ -92,13 +92,14 @@
         this.foodsScroll.scrollToElement(el, 300);
       },
       _initScroll() {
-        this.meunScroll = new BScroll(this.$refs.menuWrapper, {});
+        this.meunScroll = new BScroll(this.$refs.menuWrapper, {
+          click: true
+        });
         this.foodsScroll = new BScroll(this.$refs.foodsWrapper, {
           probeType: 3
         });
         this.foodsScroll.on('scroll', (pos) => {
           this.scrollY = Math.abs(Math.round(pos.y));
-          console.log(this.scrollY);
         })
       },
       _calHeight() {
