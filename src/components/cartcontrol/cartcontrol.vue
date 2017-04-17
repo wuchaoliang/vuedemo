@@ -23,16 +23,14 @@
   .cartcontrol
     font-size: 0
     display: inline-block
-    .cart-decrease
+    .cart-decrease, .cart-add
       display: inline-block
-      line-height: 24px
-      font-style: 24px
       padding: 6px
+      line-height: 24px
+      font-size: 24px
+      color: rgb(0, 160, 220)
     .cart-count
       display: inline-block
     .cart-add
       display: inline-block
-      line-height: 24px
-      font-style: 24px
-      padding: 6px
 </style>
