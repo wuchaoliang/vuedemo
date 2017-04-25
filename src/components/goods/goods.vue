@@ -1,48 +1,53 @@
 <template>
-  <div>
-    <div class="goods">
-      <div ref="menuWrapper" class="menu-wrapper">
-        <ul>
-          <li v-for="(item,index) in goods" class="menu-item" :class="{'current':currentIndex===index}" @click="selectMenu(index,$event)">
-          <span class="text border-1px">
-            <span v-show="item.type>0" class="icon" :class="classMap[item.type]"></span>
-            {{item.name}}
-          </span>
-          </li>
-        </ul>
-      </div>
-      <div ref="foodsWrapper" class="foods-wrapper">
-        <ul>
-          <li v-for="(item,index) in goods" class="food-list food-list-hook">
-            <h1 class="title">{{item.name}}</h1>
-            <ul>
-              <li v-for="(food,index) in item.foods" class="food-item border-1px">
-                <div class="icon">
-                  <img width="57" height="57" :src="food.icon">
-                </div>
-                <div class="content">
-                  <h2 class="name">{{food.name}}</h2>
-                  <p class="desc">{{food.description}}</p>
-                  <div class="extra">
-                    <span class="count">月售{{food.sellCount}}份</span>
-                    <span>好评率{{food.rating}}%</span>
-                  </div>
-                  <div class="price">
-                    <span class="now">￥{{food.price}}</span>
-                    <span class="old" v-show="food.oldPrice">￥{{food.oldPrice}}</span>
-                  </div>
-                </div>
-              </li>
-            </ul>
-          </li>
-        </ul>
-      </div>
+  <div class="goods">
+    <div ref="menuWrapper" class="menu-wrapper">
+      <ul>
+        <li v-for="(item,index) in goods" class="menu-item" :class="{'current':currentIndex===index}" @click="selectMenu(index,$event)">
+        <span class="text border-1px">
+          <span v-show="item.type>0" class="icon" :class="classMap[item.type]"></span>
+          {{item.name}}
+        </span>
+        </li>
+      </ul>
     </div>
+    <div ref="foodsWrapper" class="foods-wrapper">
+      <ul>
+        <li v-for="(item,index) in goods" class="food-list food-list-hook">
+          <h1 class="title">{{item.name}}</h1>
+          <ul>
+            <li v-for="(food,index) in item.foods" class="food-item border-1px">
+              <div class="icon">
+                <img width="57" height="57" :src="food.icon">
+              </div>
+              <div class="content">
+                <h2 class="name">{{food.name}}</h2>
+                <p class="desc">{{food.description}}</p>
+                <div class="extra">
+                  <span class="count">月售{{food.sellCount}}份</span>
+                  <span>好评率{{food.rating}}%</span>
+                </div>
+                <div class="price">
+                  <span class="now">￥{{food.price}}</span>
+                  <span class="old" v-show="food.oldPrice">￥{{food.oldPrice}}</span>
+                </div>
+                <div class="cartcontrol-wrapper">
+                  <cartcontrol :food="food"></cartcontrol>
+                </div>
+              </div>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+    <shopcart :delivery-price="seller.deliveryPrice" :min-price="seller.minPrice"></shopcart>
   </div>
 </template>
 
 <script type="text/ecmascript-6">
   import BScroll from 'better-scroll'
+  import shopcart from 'components/shopcart/shopcart.vue'
+  import cartcontrol from 'components/cartcontrol/cartcontrol.vue'
+
   const ERR_OK = 0;
   export default {
     props: {
@@ -96,6 +101,7 @@
           click: true
         });
         this.foodsScroll = new BScroll(this.$refs.foodsWrapper, {
+          click: true,
           probeType: 3
         });
         this.foodsScroll.on('scroll', (pos) => {
@@ -112,6 +118,10 @@
           this.listHeight.push(height);
         }
       }
+    },
+    components: {
+      shopcart: shopcart,
+      cartcontrol: cartcontrol
     }
   }
 </script>
@@ -151,15 +161,15 @@
           background-size: 12px 12px
           background-repeat: no-repeat
           &.decrease
-           bg-url('decrease_3')
+            bg-url('decrease_3')
           &.discount
-           bg-url('discount_3')
+            bg-url('discount_3')
           &.guarantee
-           bg-url('guarantee_3')
+            bg-url('guarantee_3')
           &.invoice
-           bg-url('invoice_3')
+            bg-url('invoice_3')
           &.special
-           bg-url('special_3')
+            bg-url('special_3')
         .text
           display: table-cell
           width: 56px
@@ -181,40 +191,44 @@
         margin: 18px
         border-1px(rgba(7, 17, 27, 0.1))
         padding-bottom: 18px
-        &:last-child
-        &:after
-        display: none
-          padding-bottom: 0
-        .icon
-          flex: 0 0 57px
-          margin-right: 10px
-        .content
-          flex: 1
-          .name
-            margin: 2px 0 8px 0
-            height: 14px
-            line-height: 14px
-            font-size: 14px
-            color: rgb(7, 17,27)
-          .desc, .extra
-            line-height: 10px
-            font-size: 10px
-            color: rgb(147, 153, 159)
-          .desc
-            line-height: 12px
-            margin-bottom: 8px
-          .extra
-            &.count
-              margin-right: 12px
-          .price
-            font-weight: 700px
-            line-height: 24px
-            .now
-              margin-right: 8px
-              font-size: 14px
-              color: rgb(240, 20, 20)
-            .old
-              text-decoration: line-through
-              font-size: 10px
-              color: rgb(147, 153, 159)
+  &:last-child
+  &:after
+  display: none
+             padding-bottom: 0
+  .icon
+    flex: 0 0 57px
+    margin-right: 10px
+  .content
+    flex: 1
+    .name
+      margin: 2px 0 8px 0
+      height: 14px
+      line-height: 14px
+      font-size: 14px
+      color: rgb(7, 17,27)
+    .desc, .extra
+      line-height: 10px
+      font-size: 10px
+      color: rgb(147, 153, 159)
+    .desc
+      line-height: 12px
+      margin-bottom: 8px
+    .extra
+      &.count
+        margin-right: 12px
+    .price
+      font-weight: 700px
+      line-height: 24px
+      .now
+        margin-right: 8px
+        font-size: 14px
+        color: rgb(240, 20, 20)
+      .old
+        text-decoration: line-through
+        font-size: 10px
+        color: rgb(147, 153, 159)
+    .cartcontrol-wrapper
+      position: absolute
+      right: 0px
+      bottom: 12px
 </style>
