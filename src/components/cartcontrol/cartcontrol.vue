@@ -1,6 +1,10 @@
 <template>
   <div class="cartcontrol">
-    <div @click="minusCart" class="cart-decrease icon-remove_circle_outline" v-show="food.count>0"></div>
+    <transition name="cart">
+      <div @click="minusCart" class="cart-decrease" v-show="food.count>0">
+        <span class="icon-remove_circle_outline"></span>
+      </div>
+    </transition>
     <div class="cart-count" v-show="food.count>0">{{food.count}}</div>
     <div @click="addCart" class="cart-add icon-add_circle"></div>
   </div>
@@ -45,12 +49,17 @@
   .cartcontrol
     font-size: 0
     display: inline-block
-    .cart-decrease, .cart-add
+    .cart-decrease
       display: inline-block
-      padding: 6px
+      padding: 4px
       line-height: 24px
       font-size: 24px
       color: rgb(0, 160, 220)
+      &.cart-enter-active, &.cart-leave-active
+        transition: all 0.5s
+      &.cart-enter, &.cart-leave-active
+        opacity: 0
+        background: rgba(7, 17, 27, 0)
     .cart-count
       display: inline-block
       vertical-align: top
@@ -62,4 +71,8 @@
       color: rgb(147, 153, 159)
     .cart-add
       display: inline-block
+      padding: 6px
+      line-height: 24px
+      font-size: 24px
+      color: rgb(0, 160, 220)
 </style>
