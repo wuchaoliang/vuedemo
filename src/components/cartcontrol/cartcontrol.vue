@@ -65,6 +65,7 @@
       vertical-align: top
       width: 12px
       padding-top: 6px
+
       line-height: 24px
       text-align: center
       font-size: 10px
