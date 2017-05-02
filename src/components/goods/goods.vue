@@ -2,7 +2,8 @@
   <div class="goods">
     <div ref="menuWrapper" class="menu-wrapper">
       <ul>
-        <li v-for="(item,index) in goods" class="menu-item" :class="{'current':currentIndex===index}" @click="selectMenu(index,$event)">
+        <li v-for="(item,index) in goods" class="menu-item" :class="{'current':currentIndex===index}"
+            @click="selectMenu(index,$event)">
         <span class="text border-1px">
           <span v-show="item.type>0" class="icon" :class="classMap[item.type]"></span>
           {{item.name}}
@@ -39,7 +40,7 @@
         </li>
       </ul>
     </div>
-    <shopcart :delivery-price="seller.deliveryPrice" :min-price="seller.minPrice"></shopcart>
+    <shopcart :selectFoods="selectFoods" :delivery-price="seller.deliveryPrice" :min-price="seller.minPrice"></shopcart>
   </div>
 </template>
 
@@ -68,7 +69,7 @@
         res = res.body;
         if (res.errno === ERR_OK) {
           this.goods = res.data;
-          this.$nextTick(function() {
+          this.$nextTick(function () {
             this._initScroll();
             this._calHeight();
           })
@@ -85,6 +86,17 @@
           }
         }
         return 0;
+      },
+      selectFoods() {
+        let foods = [];
+        for (var i = 0; i < this.goods.length; i++) {
+          for (var j = 0; j < this.goods[i].foods.length; j++) {
+            if (this.goods[i].foods[j].count) {
+              foods.push(this.goods[i].foods[j]);
+            }
+          }
+        };
+        return foods;
       }
     },
     methods: {
@@ -174,7 +186,7 @@
           display: table-cell
           width: 56px
           vertical-align: middle
-          border-1px(rgba(7,17,27,0.1))
+          border-1px(rgba(7, 17, 27, 0.1))
           font-size: 12px
     .foods-wrapper
       flex: 1
@@ -191,13 +203,22 @@
         margin: 18px
         border-1px(rgba(7, 17, 27, 0.1))
         padding-bottom: 18px
-  &:last-child
-  &:after
-  display: none
-             padding-bottom: 0
+
+  &
+  :
+  last-child
+  &
+  :
+  after
+  display
+  :
+  none
+    padding-bottom: 0
+
   .icon
     flex: 0 0 57px
     margin-right: 10px
+
   .content
     flex: 1
     .name
@@ -205,7 +226,7 @@
       height: 14px
       line-height: 14px
       font-size: 14px
-      color: rgb(7, 17,27)
+      color: rgb(7, 17, 27)
     .desc, .extra
       line-height: 10px
       font-size: 10px
