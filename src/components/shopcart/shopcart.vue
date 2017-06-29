@@ -89,6 +89,11 @@
           {show: false}
         ]
       }
+    },
+    methods: {
+      drop(el) {
+        console.log(el);
+      }
     }
   }
 </script>
