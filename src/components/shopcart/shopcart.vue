@@ -18,7 +18,9 @@
       </div>
       <div class="ball-container">
         <transition-group name="drop">
-          <div v-for="ball in balls" :key="ball" v-show="ball.show" class="ball"></div>
+          <div v-for="ball in balls" :key="ball" v-show="ball.show" class="ball">
+            <div class="inner inner-hook"></div>
+          </div>
         </transition-group>
       </div>
     </div>
@@ -87,12 +89,47 @@
           {show: false},
           {show: false},
           {show: false}
-        ]
+        ],
+        dropBall: []
       }
     },
     methods: {
       drop(el) {
         console.log(el);
+        for (let i = 0; i < this.balls.length; i++) {
+          let ball = this.balls[i];
+          ball.show = true;
+          ball.el = el;
+          this.dropBall.push(ball);
+          return;
+        }
+      }
+    },
+    transitions: {
+      drop: {
+        beforeEnter(el) {
+          let count = this.balls.length;
+          while (count--) {
+            let ball = this.balls[count];
+            if (ball.show) {
+              let rect = ball.el.getBoundingClientRect();
+              let x = rect.left - 32;
+              let y = -(window.innerHeight - rect.top - 22);
+              el.style.display = '';
+              el.style.webkitTransform = 'translate3d(0,' + y + 'px,0)';
+              el.transform = 'translate3d(0,' + y + 'px,0)';
+              let inner = el.getElementsByClassName('inner-hook')[0];
+              inner.style.webkitTransform = 'translate3d(' + x + 'px, 0,0)';
+              inner.style.transform = 'translate3d(' + x + 'px,0,0)';
+            }
+          }
+        },
+        enter(el) {
+
+        },
+        afterEnter(el) {
+
+        }
       }
     }
   }
