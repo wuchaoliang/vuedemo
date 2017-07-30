@@ -39,7 +39,7 @@
         </li>
       </ul>
     </div>
-    <shopcart ref="shopcart" :delivery-price="seller.deliveryPrice" :min-price="seller.minPrice"></shopcart>
+    <shopcart ref="shopcart" :select-foods="selectFoods" :delivery-price="seller.deliveryPrice" :min-price="seller.minPrice"></shopcart>
   </div>
 </template>
 
@@ -76,6 +76,18 @@
       })
     },
     computed: {
+      selectFoods() {
+        let foods = [];
+        for (var i = 0; i < this.goods.length; i++) {
+          for (var j = 0; j < this.goods[i].foods.length; j++) {
+            if (this.goods[i].foods[j].count) {
+              foods.push(this.goods[i].foods[j]);
+            }
+          }
+        };
+        console.log(foods);
+        return foods;
+      },
       currentIndex() {
         for (let i = 0; i < this.listHeight.length; i++) {
           let height1 = this.listHeight[i];
