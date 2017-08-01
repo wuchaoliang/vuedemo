@@ -85,7 +85,6 @@
             }
           }
         };
-        console.log(foods);
         return foods;
       },
       currentIndex() {
@@ -131,7 +130,9 @@
         }
       },
       addFood(target) {
-        this._drop(target);
+        this.$nextTick(() => {
+          this._drop(target);
+        })
       },
       _drop(target) {
         this.$refs.shopcart.drop(target);
