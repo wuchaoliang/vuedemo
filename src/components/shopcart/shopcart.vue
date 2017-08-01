@@ -1,6 +1,6 @@
 <template>
   <div class="shopcart">
-    <div class="content">
+    <div class="content" @click="toggleList">
       <div class="content-left">
         <div class="logo-wrapper">
           <div class="logo" :class="{'hightlight':totalCount>0}">
@@ -16,20 +16,38 @@
           {{payDesc}}
         </div>
       </div>
-      <div class="ball-container">
-        <div v-for="ball in dropBalls">
-          <transition name="drop" @before-enter="beforeDrop" @enter="dropping" @after-enter="afterDrop">
-            <div class="ball" v-show="ball.show">
-              <div class="inner inner-hook"></div>
-            </div>
-          </transition>
-        </div>
+    </div>
+    <div class="ball-container">
+      <div v-for="ball in dropBalls">
+        <transition name="drop" @before-enter="beforeDrop" @enter="dropping" @after-enter="afterDrop">
+          <div class="ball" v-show="ball.show">
+            <div class="inner inner-hook"></div>
+          </div>
+        </transition>
       </div>
+    </div>
+    <div class="shopcart-list" v-show="listShow">
+      <div class="list-header">
+        <h1 class="title">购物车</h1>
+        <span class="empty">清空</span>
+      </div>
+      <ul>
+        <li class="food" v-for="(food,index) in selectFoods">
+          <span class="name">{{food.name}}</span>
+          <div class="price">
+            <span>￥{{food.price*food*count}}</span>
+          </div>
+          <div class="cartcontrol-wrapper">
+            <cartcontrol :food="food"></cartcontrol>
+          </div>
+        </li>
+      </ul>
     </div>
   </div>
 </template>
 
 <script type="text/ecmascript-6">
+  import cartcontrol from 'components/cartcontrol/cartcontrol.vue'
   export default {
     props: {
       selectFoods: {
@@ -81,6 +99,14 @@
         } else {
           return 'enough';
         }
+      },
+      listShow() {
+          if (!this.totalCount) {
+            this.fold = true;
+            return false;
+          }
+          let show = !this.fold;
+          return show;
       }
     },
     data() {
@@ -92,7 +118,8 @@
           {show: false},
           {show: false}
         ],
-        dropBall: []
+        dropBall: [],
+        fold: false
       }
     },
     methods: {
@@ -140,7 +167,16 @@
           el.style.display = 'none';
         }
         this.dropBalls.push({show: false});
+      },
+      toggleList() {
+          if (!this.totalCount) {
+            return;
+          }
+          this.fold = !this.fold;
       }
+    },
+    components: {
+      cartcontrol
     }
   }
 </script>
