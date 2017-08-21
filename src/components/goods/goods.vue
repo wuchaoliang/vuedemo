@@ -79,13 +79,13 @@
       selectFoods() {
         let foods = [];
         for (var i = 0; i < this.goods.length; i++) {
+          console.log(this.goods[i].foods);
           for (var j = 0; j < this.goods[i].foods.length; j++) {
             if (this.goods[i].foods[j].count) {
               foods.push(this.goods[i].foods[j]);
             }
           }
         };
-        console.log(foods);
         return foods;
       },
       currentIndex() {
@@ -131,7 +131,9 @@
         }
       },
       addFood(target) {
-        this._drop(target);
+        this.$nextTick(() => {
+          this._drop(target);
+        })
       },
       _drop(target) {
         this.$refs.shopcart.drop(target);

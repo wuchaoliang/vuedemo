@@ -20,7 +20,6 @@
     },
     methods: {
       minusCart(event) {
-        console.log('cli');
         if (!event._constructed) {
           return;
         }
@@ -31,7 +30,6 @@
         }
       },
       addCart(event) {
-        console.log('cli');
         if (!event._constructed) {
           return;
         }
