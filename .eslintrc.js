@@ -26,6 +26,7 @@ module.exports = {
     'indent': 0,
     'space-before-function-paren': 0,
     'semi': 0,
-    'no-tabs': 0
+    'no-tabs': 0,
+    'no-unused-vars': 0
   }
 }
