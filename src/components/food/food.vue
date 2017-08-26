@@ -26,6 +26,11 @@
                 <div @click.stop.prevent="addFirst" class="buy" v-show="!food.count || food.conut === 0">加入购物车</div>
               </transition>
             </div>
+            <splite v-show="food.info"></splite>
+            <div class="info" v-show="food.info">
+              <h1 class="title">商品信息</h1>
+              <p class="text">{{food.info}}</p>
+            </div>
           </div>
       </div>
     </transition>
@@ -36,6 +41,7 @@
   import Vue from 'vue';
   import BScroll from 'better-scroll'
   import cartcontrol from 'components/cartcontrol/cartcontrol.vue'
+  import splite from 'components/splite/splite.vue'
   export default {
     props: {
       food: {
@@ -71,7 +77,8 @@
       }
     },
     components: {
-      cartcontrol
+      cartcontrol,
+      splite
     }
   }
 </script>
@@ -163,4 +170,16 @@
         &.fade-enter, &.fade-leave-active
           opacity: 0
           z-index: -1
+    .info
+      padding: 18px
+      .title
+        line-height: 14px
+        margin-bottom: 6px
+        font-size: 14px
+        color: rgb(7, 17, 27)
+      .text
+        line-height: 24px
+        padding: 0 8px
+        font-size: 12px
+        color: rgb(77, 85, 93)
 </style>
