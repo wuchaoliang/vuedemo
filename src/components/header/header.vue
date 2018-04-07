@@ -39,7 +39,7 @@
             </div>
             <div class="title">
               <div class="line"></div>
-              <div class="text">优惠信息</div>
+              <div class="text">test</div>
               <div class="line"></div>
             </div>
             <ul v-if="seller.supports" class="supports">
